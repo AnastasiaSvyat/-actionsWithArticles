@@ -1,0 +1,41 @@
+.container_filter{
+    display: flex;
+    background-color: rgb(132, 188, 233);
+    background-color: rgb(192, 220, 243);
+    animation-name: slideDown;
+    animation-duration: 3s; 
+    animation-timing-function: ease;    
+    visibility: visible !important;  
+    justify-content: center;
+    align-items: center;
+    z-index: 299;
+    position: fixed;
+    width: 100%;
+}
+@keyframes slideDown {
+    0% {
+        transform: translateY(0%);
+    }
+    50%{
+        transform: translateY(10%);
+    }
+    100%{
+        transform: translateY(0%);
+    }      
+}
+.container_filter-yes img{
+    width: 40px;
+    height: 40px;
+    margin-left: 50px;
+    cursor: pointer;
+}
+mat-tab-group{
+    margin-right: 150px;
+}
+mat-radio-button{
+    margin-left: 30px;
+}
+.mat-button-toggle{
+    background-color: rgb(179, 212, 228);
+}
+

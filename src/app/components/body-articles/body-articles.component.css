@@ -1,0 +1,45 @@
+.articles_box{
+    width: 250px;
+    height: 350px;
+    text-align: center;
+    margin-top: 30px;
+    color: rgb(90, 18, 63);
+    background-color: white;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+    clip-path: 
+    polygon(
+      0% 10%,     
+      10% 0%,    
+      90% 0%,    
+      100% 10%,   
+      100% 90%,  
+      90% 100%, 
+      10% 100%,   
+      0 90%      
+    );
+}
+.articles_box_f{
+    filter: drop-shadow(0px 0px 10px rgba(94, 6, 79, 0.5));
+}
+.container,.container_button{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.publish{
+    color: rgb(209, 0, 174);
+    margin-top: 30px;
+    margin-right: 10px;
+}
+.example-button-container img{
+    width: 25px;
+    height: 25px;
+}
+.example-button-container{
+    margin-top: 18px;
+    margin-left: 40px;
+}
+.buttonDelete button{
+    margin-left: 140px;
+    margin-top: 120px;
+}

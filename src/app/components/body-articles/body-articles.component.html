@@ -1,0 +1,40 @@
+<app-header (valueEventFilter) = "addItem($event)" (valueEventPublishFilter) = "addPublishItem($event)" [articles] = 'articles'></app-header>
+<div class="container">
+  <div *ngFor = "let article of articles |filterPipe:valuePublishFilter | secondPipe:valueFilter " 
+    class="articles_box_f"  >
+      <div class="articles_box" >
+        <div class="container_button">
+          <p class="publish">{{article.published ? 'Published!' : 'Not published!'}}</p>
+            <span  class="example-button-container">
+              <button  mat-mini-fab color="basic" 
+                aria-label="Example icon button with a plus one icon"
+                matTooltip="Edit Article">
+                  <img (click) = "editArticle(art = article)" src="https://www.flaticon.com/svg/vstatic/svg/1160/1160758.svg?token=exp=1616419558~hmac=3024161dbef840754bf1214e595f240d" alt="">
+              </button>
+            </span>
+      </div>
+        <h3 #title>
+          {{article.title |titlecase}}
+        </h3>
+      <span *ngFor = 'let category of categories'>
+        <p *ngIf = 'article.categoryId == category._id'>
+          Category: {{category.name}}
+        </p>
+      </span>
+      <p>
+        {{article.description |titlecase}}
+      </p>
+      <span (click) = "deleteArticle(article)" class="example-button-container buttonDelete">
+        <button mat-mini-fab color="basic" 
+          matTooltip="Delete Article">
+            <img src="https://www.flaticon.com/svg/vstatic/svg/875/875550.svg?token=exp=1616508389~hmac=b3b243db44768307e321110dc1e5bc71" alt="">
+        </button>
+      </span>
+      </div>
+  </div>
+    <div *ngIf = "showEditAricle">
+      <app-edit-articles  (changeStateShowEditAricle) = "showEditAricle = neweStateShowEditAricle" [showEditAricle] ='showEditAricle' [art] = 'art'></app-edit-articles>
+    </div>
+</div>
+
+

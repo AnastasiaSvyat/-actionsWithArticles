@@ -1,0 +1,61 @@
+.container,.example-full-width,.button,.radio{
+    width: 100%;
+}
+.example-form-field {
+    width: 70%;
+    margin-left: 68px;
+    margin-top: 15px;
+    
+}
+h2,button{
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 25px;
+    padding-top: 30px;
+
+}
+mat-option{
+    color: rgb(161, 16, 16);
+    background-color: rgb(228, 193, 248);
+}
+mat-label,h2,mat-radio-button,button{
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+}
+mat-radio-button{
+    margin-left: 28px;
+    margin-top: 10px;
+}
+.button,.radio{
+    display: flex;
+    justify-content: center;
+}
+button{
+    width: 150px;
+    height: 45px;
+    margin-top: 40px;
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(177, 105, 165);
+    padding-top: 0px;
+    font-style: 20px;
+}
+.showAddArtcl {
+    width: 30%;
+    height: 500px;
+    background-color: rgb(250, 166, 170);
+    border-radius: 20px;
+    left: 520px;
+    margin-top: 40px;
+    animation: pulsing 2s ;
+    z-index: 300;
+    position: fixed;
+}
+@keyframes pulsing {
+  0% {
+    transform: scale(0.5, 0.5)
+  }
+  100% {
+    transform: scale(1.0, 1.0);
+  }
+}
