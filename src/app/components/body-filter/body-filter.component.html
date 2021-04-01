@@ -1,12 +1,12 @@
 <div class="container_filter">
-    <mat-button-toggle-group [(ngModel)]="categoryId" aria-label="Font Style" *ngFor = 'let category of categories'>
+    <mat-button-toggle-group [formControl]="categoryId" aria-label="Font Style" *ngFor = 'let category of categories'>
         <mat-button-toggle value="{{category._id}}">{{category.name}}</mat-button-toggle>
     </mat-button-toggle-group>
       <mat-button-toggle value="">All</mat-button-toggle>
 
 <div>
     <div>
-        <mat-radio-group [(ngModel)]="published" aria-label="Select an option" class="example-form-field">
+        <mat-radio-group [formControl]="published" aria-label="Select an option" class="example-form-field">
             <mat-radio-button value="true">Publish</mat-radio-button>
             <mat-radio-button value="false">Unpublish</mat-radio-button>
         </mat-radio-group>
