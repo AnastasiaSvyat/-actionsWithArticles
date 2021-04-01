@@ -3,7 +3,7 @@
     background-color: rgb(132, 188, 233);
     background-color: rgb(192, 220, 243);
     animation-name: slideDown;
-    animation-duration: 3s; 
+    animation-duration: 0.5s; 
     animation-timing-function: ease;    
     visibility: visible !important;  
     justify-content: center;
@@ -26,8 +26,12 @@
 .container_filter-yes img{
     width: 40px;
     height: 40px;
-    margin-left: 50px;
     cursor: pointer;
+}
+.container_filter-yes{
+    border: none;
+    margin-left: 50px;
+
 }
 mat-tab-group{
     margin-right: 150px;
@@ -35,7 +39,7 @@ mat-tab-group{
 mat-radio-button{
     margin-left: 30px;
 }
-.mat-button-toggle{
+.mat-button-toggle,.container_filter-yes{
     background-color: rgb(179, 212, 228);
 }
 

@@ -10,6 +10,8 @@ import { Component, OnInit,Input ,Output,EventEmitter} from '@angular/core';
 export class HeaderComponent implements OnInit {
 @Input() articles!:any;
 @Output() valueEventFilter:EventEmitter<any> = new EventEmitter<any>();
+
+@Output() outputArticles:EventEmitter<any> = new EventEmitter<any>();
 @Output() valueEventPublishFilter:EventEmitter<any> = new EventEmitter<any>();
   
   public showAdd:any;
@@ -33,5 +35,8 @@ export class HeaderComponent implements OnInit {
   }
   addFilterPublish(valuePublishFilter: any){
     this.valueEventPublishFilter.emit(valuePublishFilter)
+  }
+  addArticle(event:any) {
+    this.outputArticles.emit(event);
   }
 }

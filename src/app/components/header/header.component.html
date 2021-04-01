@@ -14,7 +14,7 @@
                         matTooltip="Add new article"
                         (click)="showAddArtcl()" 
                         mat-fab  class="container_img">
-                            <img src="https://www.flaticon.com/svg/vstatic/svg/1160/1160836.svg?token=exp=1616419435~hmac=04b7c59c019893b6da23f23754173907" alt="">
+                        <mat-icon>add</mat-icon>
                 </button>
             </div>
             <div class="example-button-container">
@@ -23,13 +23,14 @@
                     matTooltip="Filter articles"
                     class="container_img" 
                     mat-fab aria-label="Example icon button with a delete icon">
-                        <img src="https://www.flaticon.com/svg/vstatic/svg/1160/1160885.svg?token=exp=1616419446~hmac=e32d9199e9718d9639ca3726a2dbbfbf" alt="">
+                    <mat-icon>filter</mat-icon>
+                       
                 </button>
             </div>
         </div>
     </div>
     <div *ngIf = "showAdd">
-        <app-add-articles (changeStateShowElem) = "showAdd = newStateShowElem" [showAdd] = 'showAdd' [articles] = 'articles' ></app-add-articles>
+        <app-add-articles (changeStateShowElem) = "showAdd = newStateShowElem" [showAdd] = 'showAdd' (outputArticles) = "addArticle($event)"></app-add-articles>
     </div>
     <div *ngIf = "showFilter" >
         <app-body-filter (valueEventFilter) = "addItem($event)" (valueEventPublishFilter) = "addFilterPublish($event)" (changeStateShowFilterElem) = "showFilter = newStateShowFilterElem" [showFilter] = 'showFilter' ></app-body-filter>

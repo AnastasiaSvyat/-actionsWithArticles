@@ -25,12 +25,21 @@ export class BodyArticlesComponent implements OnInit {
     this.neweStateShowEditAricle = false;
   }
   ngOnInit(): void {
-    this.ArticlesService.getArticles().subscribe(articles => {
-      this.articles = articles;
-    });
+    this.getArticle()
       this.ArticlesService.getCategories().subscribe(categories => {
       this.categories = categories;
     });
+  }
+  getArticle(){
+    this.ArticlesService.getArticles().subscribe(articles => {
+      this.articles = articles;
+    });
+  }
+  addArticle(event:any){
+    this.ArticlesService.newArticle(event as Articles)
+    .subscribe(postData =>{
+      this.articles.push(postData)
+    })
   }
   editArticle(event:any){
     this.showEditAricle = !this.neweStateShowEditAricle;
@@ -41,8 +50,18 @@ export class BodyArticlesComponent implements OnInit {
   addPublishItem(valuePublishFilter: any){
     this.valuePublishFilter = valuePublishFilter
   }
-  deleteArticle(article:Articles){
+  deleteArticle(article:Articles){  
     this.articles = this.articles.filter( a => a !== article)
     this.ArticlesService.deleteArticle(article).subscribe();
   }
+  updateArticle(event:any){
+    this.ArticlesService.updateArticle(event, this.art.id)
+    .subscribe(
+      success => console.log("Done"),
+      error => console.log(error),
+  );
+  this.getArticle()
+  }
+  
+ 
 }

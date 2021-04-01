@@ -1,26 +1,35 @@
 <div class="container showAddArtcl">
+    <div class="close_btn-wrapper">
+        <button (click) = 'closeArtcle()' mat-icon-button color="accent" 
+        class="close_btn"
+        aria-label="Example icon button with a menu icon">
+        <mat-icon>close</mat-icon>
+      </button>
+      </div>
     <h2>Edit article:</h2>
+    <form [formGroup]="newTaskForm" >
     <mat-form-field class="example-form-field">
         <mat-label>Enter Title </mat-label>
-        <input matInput type="text"  [(ngModel)]="art.title" name="title" placeholder="Entr title..." />
+        <input matInput type="text"  formControlName="title" name="title" placeholder="Entr title..." />
     </mat-form-field>
     <mat-form-field class="example-form-field" >
         <mat-label>Enter Description</mat-label>
-        <textarea placeholder="Enter description..." [(ngModel)]="art.description" name="description" matInput></textarea>
+        <textarea placeholder="Enter description..." formControlName="description" name="description" matInput></textarea>
     </mat-form-field>
     <mat-form-field class="example-form-field" > 
         <mat-label>Choose an option</mat-label>
-          <mat-select [(value)]="art.categoryId" >
-            <mat-option value="604fd068b2690256a866fe02">Sport</mat-option>
-            <mat-option value="604fd068b2690256a866fe00" >Technology</mat-option>
-            <mat-option value="604fd068b2690256a866fe01">Music</mat-option>
-            <mat-option value="6050581c0e50e65eac35586f">Art</mat-option>
-        </mat-select>
+          <mat-select  formControlName="categoryId" >
+                <div *ngFor = 'let category of categories'>
+                    <mat-option value="{{category._id}}">{{category.name}}</mat-option>
+                </div>
+            </mat-select>
     </mat-form-field>
     <div class="radio" >
-      <mat-slide-toggle [(ngModel)]="art.published">Publish immediately?</mat-slide-toggle>
+      <mat-slide-toggle formControlName="published">Publish immediately?</mat-slide-toggle>
     </div>
-    <div (click) = "editArt(art)"  class="button">
-        <button>Edit</button>
+    
+    <div class="buttonEditContainer">
+        <button type="button" class="editBtn" (click) = "editArt(newTaskForm.value)">Edit</button>
     </div>
+</form>
 </div>

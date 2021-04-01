@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import { RouterModule,Routes } from "@angular/router";
 import { AppRoutingModule } from './app-routing.module';
@@ -13,17 +13,18 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import { BodyComponent } from './components/filter/body.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatTabsModule} from '@angular/material/tabs';
 import { HttpClientModule } from "@angular/common/http";
 import { BodyArticlesComponent } from './components/body-articles/body-articles.component';
-import { FormsModule }   from '@angular/forms';
+// import { FormsModule }   from '@angular/forms';
 import { EditArticlesComponent } from './components/edit-articles/edit-articles.component';
 import { FilterPipePipe } from './components/pipe/filter-pipe.pipe';
 import { SecondPipePipe } from './components/pipe/second-pipe.pipe';
-
+import {MatIconModule} from '@angular/material/icon';
+import { BodyFilterComponent } from './components/body-filter/body-filter.component';
+import {MatCardModule} from '@angular/material/card';
 
 const appRoutes:Routes = [
   {path:'', component:HeaderComponent},
@@ -37,14 +38,15 @@ const appRoutes:Routes = [
     AppComponent,
     HeaderComponent,
     AddArticlesComponent,
-    BodyComponent,
     BodyArticlesComponent,
     EditArticlesComponent,
     FilterPipePipe,
     SecondPipePipe,
+    BodyFilterComponent,
   ],
   imports: [
     HttpClientModule,
+    MatCardModule,
     FormsModule,
     MatSlideToggleModule,
     MatTabsModule,
@@ -59,8 +61,14 @@ const appRoutes:Routes = [
     MatFormFieldModule,
     MatRadioModule,
     MatButtonToggleModule,
+    MatIconModule,
+    ReactiveFormsModule
   ],
   providers: [],
+  exports: [
+    FormsModule,
+    ReactiveFormsModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
