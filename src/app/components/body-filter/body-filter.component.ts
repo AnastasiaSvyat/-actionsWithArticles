@@ -1,6 +1,7 @@
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import { ArticlesService } from '../services/articles.service';
 import { FormGroup,FormControl, FormBuilder } from '@angular/forms';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-body-filter',
@@ -16,10 +17,12 @@ export class BodyFilterComponent implements OnInit {
   @Output() valueEventFilter:EventEmitter<any> = new EventEmitter<any>();
   @Output() valueEventPublishFilter:EventEmitter<any> = new EventEmitter<any>();
   @Output() changeStateShowFilterElem: EventEmitter<boolean> = new EventEmitter();
-  constructor(public ArticlesService: ArticlesService) {
+  
+  
+  constructor(public ArticlesService: ArticlesService){
     this.categoryId = new FormControl("")
     this.published = new FormControl("")
-}
+  }
 
   ngOnInit(): void {
     this.ArticlesService.getCategories().subscribe(categories => {

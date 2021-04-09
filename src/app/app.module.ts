@@ -18,20 +18,15 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatTabsModule} from '@angular/material/tabs';
 import { HttpClientModule } from "@angular/common/http";
 import { BodyArticlesComponent } from './components/body-articles/body-articles.component';
-// import { FormsModule }   from '@angular/forms';
-import { EditArticlesComponent } from './components/edit-articles/edit-articles.component';
+import {MatDialogModule} from '@angular/material/dialog';
 import { FilterPipePipe } from './components/pipe/filter-pipe.pipe';
 import { SecondPipePipe } from './components/pipe/second-pipe.pipe';
 import {MatIconModule} from '@angular/material/icon';
 import { BodyFilterComponent } from './components/body-filter/body-filter.component';
 import {MatCardModule} from '@angular/material/card';
-
-const appRoutes:Routes = [
-  {path:'', component:HeaderComponent},
-  {path:'addArticles', component: AddArticlesComponent}
+import {MatMenuModule} from '@angular/material/menu';
 
 
-]
 
 @NgModule({
   declarations: [
@@ -39,13 +34,14 @@ const appRoutes:Routes = [
     HeaderComponent,
     AddArticlesComponent,
     BodyArticlesComponent,
-    EditArticlesComponent,
     FilterPipePipe,
     SecondPipePipe,
     BodyFilterComponent,
   ],
   imports: [
+    MatMenuModule,
     HttpClientModule,
+    MatDialogModule,
     MatCardModule,
     FormsModule,
     MatSlideToggleModule,
@@ -55,7 +51,6 @@ const appRoutes:Routes = [
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    RouterModule.forRoot(appRoutes),
     MatInputModule,
     MatTooltipModule,
     MatFormFieldModule,

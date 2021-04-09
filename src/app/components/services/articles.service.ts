@@ -34,8 +34,8 @@ export class ArticlesService {
   updateArticle(postData:Articles,id: string): Observable<Articles> {
     return this.http.put<Articles>(`${this.articlesUrl}/${id}`,postData,this.httpOptions)
   }
-  newArticle(articl:Articles): Observable<Articles> {
-     return this.http.post<Articles>(this.articlesUrl, articl,this.httpOptions); 
+  newArticle(postData:Articles): Observable<Articles> {
+     return this.http.post<Articles>(this.articlesUrl, postData,this.httpOptions); 
   }
   deleteArticle(article:Articles): Observable<Articles>{
     const id = typeof article === "number" ? article : article.id

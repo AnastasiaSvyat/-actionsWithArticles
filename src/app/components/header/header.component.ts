@@ -1,4 +1,8 @@
-import { Component, OnInit,Input ,Output,EventEmitter} from '@angular/core';
+import { Component, OnInit,Input ,Output,EventEmitter,ViewChild} from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { AddArticlesComponent } from '../add-articles/add-articles.component';
+import {MatMenuTrigger} from '@angular/material/menu';
+import { BodyFilterComponent } from '../body-filter/body-filter.component';
 
 @Component({
   selector: 'app-header',
@@ -8,24 +12,35 @@ import { Component, OnInit,Input ,Output,EventEmitter} from '@angular/core';
 })
 
 export class HeaderComponent implements OnInit {
-@Input() articles!:any;
-@Output() valueEventFilter:EventEmitter<any> = new EventEmitter<any>();
+// @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger;
 
+@Output() valueEventFilter:EventEmitter<any> = new EventEmitter<any>();
 @Output() outputArticles:EventEmitter<any> = new EventEmitter<any>();
 @Output() valueEventPublishFilter:EventEmitter<any> = new EventEmitter<any>();
-  
   public showAdd:any;
-  public newStateShowElem:boolean;
   public showFilter:any;
   public newStateShowFilterElem:boolean;
+  newArt!: any;
+ 
 
-  constructor(){
-    this.newStateShowElem = false;
+  constructor(public dialog: MatDialog,public dialogtwo: MatDialog){
     this.newStateShowFilterElem = false;
   }
+
   ngOnInit(): void {}
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AddArticlesComponent, {
+      width: '500px',
+      data: {head: "Add new article:"}
+  });
+  dialogRef.afterClosed().subscribe(result => {
+      this.newArt = result;
+      this.outputArticles.emit(this.newArt);
+    });
+  }
+  
   showAddArtcl(){
-    this.showAdd = !this.newStateShowElem;
+    this.showAdd = !this.showAdd;
   }
   showFilterFunc(){
     this.showFilter = !this.newStateShowFilterElem;
@@ -35,8 +50,5 @@ export class HeaderComponent implements OnInit {
   }
   addFilterPublish(valuePublishFilter: any){
     this.valueEventPublishFilter.emit(valuePublishFilter)
-  }
-  addArticle(event:any) {
-    this.outputArticles.emit(event);
   }
 }

@@ -12,7 +12,8 @@
             <div class="example-button-container">
                 <button mat-raised-button
                         matTooltip="Add new article"
-                        (click)="showAddArtcl()" 
+                        (click)="openDialog()"
+                        
                         mat-fab  class="container_img">
                         <mat-icon>add</mat-icon>
                 </button>
@@ -29,11 +30,10 @@
             </div>
         </div>
     </div>
-    <div *ngIf = "showAdd">
-        <app-add-articles (changeStateShowElem) = "showAdd = newStateShowElem" [showAdd] = 'showAdd' (outputArticles) = "addArticle($event)"></app-add-articles>
-    </div>
+  
     <div *ngIf = "showFilter" >
         <app-body-filter (valueEventFilter) = "addItem($event)" (valueEventPublishFilter) = "addFilterPublish($event)" (changeStateShowFilterElem) = "showFilter = newStateShowFilterElem" [showFilter] = 'showFilter' ></app-body-filter>
     </div>
 
 </div>
+

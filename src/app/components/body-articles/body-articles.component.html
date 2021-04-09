@@ -5,7 +5,7 @@
       <div class="articles_box" >
         <div class="container_button">
           <p class="publish">{{article.published ? 'Published!' : 'Not published!'}}</p>
-              <button  (click) = "editArticle(art = article)"
+              <button  (click) = "openDialog(art = article)"
                 class="example-button-container"
                 mat-mini-fab color="basic" 
                 aria-label="Example icon button with a plus one icon"
@@ -33,10 +33,8 @@
         </button>
       </span>
       </div>
-  </div>
-    <div *ngIf = "showEditAricle">
-      <app-edit-articles (change) = "updateArticle($event)" (changeStateShowEditAricle) = "showEditAricle = neweStateShowEditAricle" [showEditAricle] ='showEditAricle' [art] = 'art'></app-edit-articles>
     </div>
-</div>
+  </div>
 
 
+ 

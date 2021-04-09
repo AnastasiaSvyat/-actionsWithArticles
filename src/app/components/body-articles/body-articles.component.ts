@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ArticlesService } from '../services/articles.service';
 import { Articles } from '../services/articles.service';
 import { Categories } from '../services/articles.service';
-
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { AddArticlesComponent } from '../add-articles/add-articles.component';
 
 
 @Component({
@@ -17,32 +18,55 @@ export class BodyArticlesComponent implements OnInit {
   valueFilter!:any
   valuePublishFilter!:any
   published!:boolean;
-  showEditAricle!:boolean;
+  title!:string;
   art!:any;
-  neweStateShowEditAricle:boolean;
-  constructor(public ArticlesService: ArticlesService) { 
+  head!:string
+  updateArt!:any
+  description!:any
+  categoryId!:any
+
+  
+
+  constructor(public ArticlesService: ArticlesService,public dialog: MatDialog) { 
     this.valueFilter = ''
-    this.neweStateShowEditAricle = false;
   }
-  ngOnInit(): void {
+ngOnInit(): void {
     this.getArticle()
       this.ArticlesService.getCategories().subscribe(categories => {
       this.categories = categories;
     });
   }
+  openDialog(event:any): void {
+    console.log(event);
+    const dialogRef = this.dialog.open(AddArticlesComponent, {
+      width: '500px',
+      data: {head: "Edit article:",title:event.title,categoryId:event.categoryId,
+        description:event.description,published:event.published}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.updateArt = result;
+      console.log(this.updateArt);
+      this.getArticle()
+        this.ArticlesService.updateArticle(this.updateArt, event.id)
+          .subscribe(
+            success => console.log("Done"),
+            error => console.log(error));
+        this.getArticle()
+      })
+    }
+    
   getArticle(){
     this.ArticlesService.getArticles().subscribe(articles => {
       this.articles = articles;
     });
   }
+  
   addArticle(event:any){
     this.ArticlesService.newArticle(event as Articles)
     .subscribe(postData =>{
-      this.articles.push(postData)
+      console.log(postData);
+    this.articles.push(postData)
     })
-  }
-  editArticle(event:any){
-    this.showEditAricle = !this.neweStateShowEditAricle;
   }
   addItem(valueFilter: any) {
     this.valueFilter = valueFilter
@@ -54,14 +78,4 @@ export class BodyArticlesComponent implements OnInit {
     this.articles = this.articles.filter( a => a !== article)
     this.ArticlesService.deleteArticle(article).subscribe();
   }
-  updateArticle(event:any){
-    this.ArticlesService.updateArticle(event, this.art.id)
-    .subscribe(
-      success => console.log("Done"),
-      error => console.log(error),
-  );
-  this.getArticle()
-  }
-  
- 
 }
